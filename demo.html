@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html,
+    body,
+    #container {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      font-size: 13px;
+    }
+
+    .custom-content-marker {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container"></div>
+  <script
+    src="https://webapi.amap.com/maps?v=1.4.15&key=40e2e98b57dfe9f6fa478c02fafd1bd9&plugin=AMap.CustomLayer,AMap.ControlBar,AMap.Heatmap">
+  </script>
+  <!-- <script type="text/javascript" src="https://a.amap.com/jsapi_demos/static/resource/heatmapData.js"></script> -->
+  <script type="text/javascript">
+    var map = new AMap.Map("container", {
+      viewMode: '3D',
+      pitch: 40,
+      resizeEnable: true,
+      center: [121.48, 31.22],
+      mapStyle: 'amap://styles/1f6ba7ee167232ad9b6e4919cb64899a',
+      zoom: 11
+    })
+    map.addControl(new AMap.ControlBar({}));
+    var heatmapOpts = {
+      //3d 相关的参数
+      '3d': {
+        //热度转高度的曲线控制参数，可以利用左侧的控制面板获取
+        heightBezier: [0.83, 0.005, 0.262, 0.995],
+        //取样精度，值越小，曲面效果越精细，但同时性能消耗越大
+        gridSize: 2,
+        heightScale: 1
+      },
+      gradient: {
+        // 0.1: '#9FEAF9',
+        // 0.2: '#F9B89F',
+        // 0.4: '#FB7651',
+        // 0.6: '#FA6035',
+        // 0.8: '#FB4A1A',
+        // 1: '#FC3903'
+        0: 'green',
+        0.6: '#FA6035',
+        1: 'red'
+      }
+    }
+
+    //初始化heatmap对象
+    var heatmap = new AMap.Heatmap(map, heatmapOpts);
+    var heatmapData = [
+      // 黄埔
+      {
+        "lng": "121.48",
+        "lat": "31.23",
+        "title": '黄埔区',
+        "count": 7.62,
+        "yd": '65.38',
+        "sd": '60.4',
+        "qql": '7.62%',
+        "cql": '92%'
+      },
+      // 长宁
+      {
+        "lng": "121.42",
+        "lat": "31.22",
+        "title": '长宁区',
+        "count": 16.56,
+        "yd": '69.4',
+        "sd": '57.91',
+        "qql": '16.56%',
+        "cql": '83%'
+      },
+      // 浦东新区
+      {
+        "lng": "121.53",
+        "lat": "31.22",
+        "title": '浦东新区',
+        "count": 27.40,
+        "yd": '555.02',
+        "sd": '402.94',
+        "qql": '27.40%',
+        "cql": '73%'
+      },
+      // 静安区
+      {
+        "lng": "121.45",
+        "lat": "31.23",
+        "title": '静安区',
+        "count": 13.05,
+        "yd": '106.26',
+        "sd": '92.41',
+        "qql": '13.05%',
+        "cql": '87%'
+      },
+      // 徐汇区
+      {
+        "lng": "121.43",
+        "lat": "31.18",
+        "title": '徐汇区',
+        "count": 15.01,
+        "yd": '108.44',
+        "sd": '92.16',
+        "qql": '15.01%',
+        "cql": '85%'
+      },
+      // 嘉定区
+      {
+        "lng": "121.27",
+        "lat": "31.38",
+        "title": '嘉定区',
+        "count": 4.79,
+        "yd": '58.59',
+        "sd": '56.07',
+        "qql": '4.79%',
+        "cql": '95%'
+      },
+      // 杨浦区
+      {
+        "lng": "121.52",
+        "lat": "31.27",
+        "title": '杨浦区',
+        "count": 18.18,
+        "yd": '131.27',
+        "sd": '107.41',
+        "qql": '18.18%',
+        "cql": '82%'
+      },
+      // 虹口区
+      {
+        "lng": "121.50",
+        "lat": "31.27",
+        "title": '虹口区',
+        "count": 8.47,
+        "yd": '79.7',
+        "sd": '72.95',
+        "qql": '8.47%',
+        "cql": '92%'
+      },
+      // 金山区
+      {
+        "lng": "121.33",
+        "lat": "30.75",
+        "title": '金山区',
+        "count": 34.96,
+        "yd": '80.5',
+        "sd": '52.36',
+        "qql": '34.96%',
+        "cql": '65%'
+      },
+      // 青浦区
+      {
+        "lng": "121.12",
+        "lat": "31.15",
+        "title": '青浦区',
+        "count": 35.27,
+        "yd": '121.9',
+        "sd": '78.9',
+        "qql": '35.27%',
+        "cql": '65%'
+      },
+      // 闵行区
+      {
+        "lng": "121.38",
+        "lat": "31.12",
+        "title": '闵行区',
+        "count": 15.98,
+        "yd": '254.35',
+        "sd": '213.71',
+        "qql": '15.98%',
+        "cql": '84%'
+      },
+      // 普陀区
+      {
+        "lng": "121.40",
+        "lat": "31.25",
+        "title": '普陀区',
+        "count": 6.83,
+        "yd": '128.19',
+        "sd": '119.44',
+        "qql": '6.83%',
+        "cql": '93%'
+      },
+      // 奉贤区
+      {
+        "lng": "121.47",
+        "lat": "30.92",
+        "title": '奉贤区',
+        "count": 53.24,
+        "yd": '115.2',
+        "sd": '53.87',
+        "qql": '53.24%',
+        "cql": '47%'
+      },
+      // 松江区
+      {
+        "lng": "121.22",
+        "lat": "31.03",
+        "title": '松江区',
+        "count": 63.35,
+        "yd": '176.22',
+        "sd": '64.59',
+        "qql": '63.35%',
+        "cql": '37%'
+      },
+      // 宝山区
+      {
+        "lng": "121.48",
+        "lat": "31.40",
+        "title": '宝山区',
+        "count": 51.36,
+        "yd": '204.23',
+        "sd": '99.34',
+        "qql": '51.36%',
+        "cql": '49%'
+      },
+      // 崇明区
+      {
+        "lng": "121.40",
+        "lat": "31.62",
+        "title": '崇明区',
+        "count": 1.38,
+        "yd": '68.81',
+        "sd": '67.86',
+        "qql": '1.38%',
+        "cql": '99%'
+      }
+    ]
+    heatmap.setDataSet({
+      data: heatmapData,
+      max: 40
+    });
+
+    const opts = {
+      subdistrict: 0,
+      extensions: 'all',
+      level: 'district'
+    };
+
+    var markers = [];
+    var infoWindow = new AMap.InfoWindow({
+      offset: new AMap.Pixel(0, -30)
+    });
+
+    for (var i = 0; i < heatmapData.length; i += 1) {
+      var markerContent = '<div class="custom-content-marker"></div>';
+      var marker = new AMap.Marker({
+        content: markerContent,
+        position: [heatmapData[i].lng, heatmapData[i].lat],
+        title: heatmapData[i].title,
+        map: map
+      })
+
+      marker.content = '<h4>' + heatmapData[i].title + '</h4>';
+      marker.content += '<h6>应到：' + heatmapData[i].yd + '</h6>';
+      marker.content += '<h6>实到：' + heatmapData[i].sd + '</h6>';
+      marker.content += '<h6>出勤率：' + heatmapData[i].cql + '</h6>';
+      marker.content += '<h6>缺勤率：' + heatmapData[i].qql + '</h6>';
+      marker.on('mouseover', infoOpen);
+      //注释后打开地图时默认关闭信息窗体
+      //marker.emit('mouseover', {target: marker});
+      marker.on('mouseout', infoClose);
+      marker.on('click', newMAp);
+      markers.push(marker);
+    }
+
+    function infoClose(e) {
+      infoWindow.close(map, e.target.getPosition());
+    }
+
+    function infoOpen(e) {
+      infoWindow.setContent(e.target.content);
+      infoWindow.open(map, e.target.getPosition());
+    }
+
+    function newMAp(e) {
+      //map.setCenter(e.target.getPosition());
+      map.setZoomAndCenter(12, e.target.getPosition());
+
+      var infoWindow = new AMap.InfoWindow({
+        offset: new AMap.Pixel(0, -30)
+      });
+      infoWindow.setContent(e.target.content);
+      infoWindow.open(map, e.target.getPosition());
+    }
+  </script>
+</body>
+
+</html>
